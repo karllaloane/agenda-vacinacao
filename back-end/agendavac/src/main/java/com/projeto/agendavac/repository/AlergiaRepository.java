@@ -9,5 +9,6 @@ import java.util.Optional;
 @Repository
 public interface AlergiaRepository extends JpaRepository<Alergia, Long> {
 
-    Optional<Alergia> findByNome(String nome);
+    // Para ignorar o case sensitive do banco
+    Optional<Alergia> findByNomeIgnoreCase(String nome);
 }

@@ -16,6 +16,16 @@ public class AlergiaService {
     @Autowired
     private AlergiaRepository alergiaRepository;
 
+    public Alergia salvar(Alergia alergia) {
+
+        // se já existir uma alergia com aquele nome, não irá salvar
+        if (alergiaRepository.findByNomeIgnoreCase(alergia.getNome()).isPresent()) {
+            throw new IllegalArgumentException("Alergia com o nome '" + alergia.getNome() + "' já existe.");
+        }
+
+        return alergiaRepository.save(alergia);
+    }
+
     public List<Alergia> listarTodas() {
         return alergiaRepository.findAll();
     }
@@ -32,7 +42,7 @@ public class AlergiaService {
 
     public Alergia buscarPorNome(String nome) {
 
-        Optional<Alergia> alergiaOptional = alergiaRepository.findByNome(nome);
+        Optional<Alergia> alergiaOptional = alergiaRepository.findByNomeIgnoreCase(nome);
 
         if(alergiaOptional.isEmpty())
             throw new NoSuchElementException("Alergia com o nome '" + nome + "' não encontrada.");
@@ -40,20 +50,14 @@ public class AlergiaService {
         return alergiaOptional.get();
     }
 
-    public Alergia salvar(Alergia alergia) {
-
-        // se já existir uma alergia com aquele nome, não irá salvar
-        if (alergiaRepository.findByNome(alergia.getNome()).isPresent()) {
-            throw new IllegalArgumentException("Alergia com o nome '" + alergia.getNome() + "' já existe.");
-        }
-
-        return alergiaRepository.save(alergia);
-    }
-
-
     public Alergia atualizar(Long id, Alergia alergiaAtualizada) {
         Alergia alergia = alergiaRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Alergia com ID " + id + " não encontrada."));
+
+        // se já existir uma alergia com o nome informado, não irá atualizar
+        if (alergiaRepository.findByNomeIgnoreCase(alergiaAtualizada.getNome()).isPresent()) {
+            throw new IllegalArgumentException("Alergia com o nome '" + alergiaAtualizada.getNome() + "' já existe.");
+        }
 
         alergia.setNome(alergiaAtualizada.getNome());
 

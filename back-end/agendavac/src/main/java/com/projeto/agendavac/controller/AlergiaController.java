@@ -26,7 +26,8 @@ public class AlergiaController {
     @Operation(summary = "Cadastrar nova alergia", description = "Cadastra uma nova alergia no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Alergia criada com sucesso"),
-            @ApiResponse(responseCode = "409", description = "Alergia com o mesmo nome já cadastrada")
+            @ApiResponse(responseCode = "409", description = "Alergia com o mesmo nome já cadastrada"),
+            @ApiResponse(responseCode = "500", description = "O nome da alergia não pode estar vazio ou Alergia deve ter no máximo 40 caracteres.")
     })
     public ResponseEntity<?> criar(@RequestBody Alergia alergia) {
         try {
@@ -92,7 +93,8 @@ public class AlergiaController {
     @Operation(summary = "Atualizar alergia", description = "Atualiza os dados de uma alergia existente pelo ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Alergia atualizada com sucesso"),
-            @ApiResponse(responseCode = "404", description = "Alergia com o ID informado não encontrada")
+            @ApiResponse(responseCode = "404", description = "Alergia com o ID informado não encontrada"),
+            @ApiResponse(responseCode = "409", description = "Alergia com o mesmo nome já cadastrada")
     })
     public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody Alergia alergiaAtualizada) {
 
@@ -103,6 +105,8 @@ public class AlergiaController {
 
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Alergia com ID " + id + " não encontrada.");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         }
     }
 
