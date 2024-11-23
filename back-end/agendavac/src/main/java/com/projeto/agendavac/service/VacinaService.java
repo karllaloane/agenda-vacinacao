@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class VacinaService {
@@ -49,7 +50,8 @@ public class VacinaService {
                 .orElseThrow(() -> new NoSuchElementException("Vacina com ID " + id + " não encontrada."));
 
         // Verifica se o título já existe em outra vacina
-        if (vacinaRepository.findByTituloIgnoreCase(vacinaAtualizada.getTitulo()).isPresent()) {
+        Optional<Vacina> vac = vacinaRepository.findByTituloIgnoreCase(vacinaAtualizada.getTitulo());
+        if (vac.isPresent() && vac.get().getId() != id) {
             throw new IllegalArgumentException("Vacina com o título '" + vacinaAtualizada.getTitulo() + "' já existe.");
         }
 

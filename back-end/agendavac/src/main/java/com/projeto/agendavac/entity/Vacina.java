@@ -40,7 +40,7 @@ public class Vacina {
     private Integer intervalo;
 
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "vacina_componente",
             joinColumns = @JoinColumn(name = "vacina_id"),

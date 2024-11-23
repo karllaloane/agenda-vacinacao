@@ -50,9 +50,11 @@ public class VacinaController {
     })
     public ResponseEntity<?> listarTodas() {
         List<Vacina> vacinas = vacinaService.listarTodas();
+
         if (vacinas.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Nenhuma vacina cadastrada.");
         }
+
         return ResponseEntity.ok(vacinas);
     }
 
@@ -65,7 +67,9 @@ public class VacinaController {
     public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
         try {
             Vacina vacina = vacinaService.buscarPorId(id);
+
             return ResponseEntity.ok(vacina);
+
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
@@ -82,7 +86,9 @@ public class VacinaController {
 
         try {
             Vacina vacina = vacinaService.atualizar(id, vacinaAtualizada);
+
             return ResponseEntity.ok(vacina);
+
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
