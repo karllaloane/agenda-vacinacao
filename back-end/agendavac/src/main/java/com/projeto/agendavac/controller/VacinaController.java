@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/vacinas")
-@Tag(name = "Vacinas", description = "Gerenciamento de Vacinas")
+@Tag(name = "Vacinas", description = "Gerenciamento de vacinas")
 public class VacinaController {
 
     @Autowired

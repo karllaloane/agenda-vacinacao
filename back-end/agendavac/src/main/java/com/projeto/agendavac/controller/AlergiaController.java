@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/alergias")
-@Tag(name = "Alergias", description = "Gerenciamento de Alergias")
+@Tag(name = "Alergias", description = "Gerenciamento de alergias")
 public class AlergiaController {
 
     @Autowired

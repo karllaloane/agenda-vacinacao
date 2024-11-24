@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/componentes")
-@Tag(name = "Componentes", description = "Gerenciamento de Componentes")
+@Tag(name = "Componentes", description = "Gerenciamento de componentes")
 public class ComponenteController {
 
     @Autowired
