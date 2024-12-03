@@ -12,8 +12,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -37,8 +39,12 @@ public class AgendaController {
             @RequestParam Long usuarioId,
             @RequestParam Long vacinaId,
             @RequestParam LocalDate dataInicial,
-            @RequestParam LocalTime hora,
+            @RequestParam String horaString,
             @RequestParam(required = false) String observacoes) {
+
+        // Conversão de String para LocalTime
+        LocalTime hora;
+        hora = LocalTime.parse(horaString);
 
         List<Agenda> agendas = agendaService.agendar(usuarioId, vacinaId, dataInicial, hora, observacoes);
 

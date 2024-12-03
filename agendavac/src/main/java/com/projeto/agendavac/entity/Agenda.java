@@ -1,6 +1,8 @@
 package com.projeto.agendavac.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.projeto.agendavac.enums.Situacao;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -21,6 +23,8 @@ public class Agenda {
     private LocalDate data;
 
     @Column(nullable = false)
+    @JsonFormat(pattern = "HH:mm")
+    @Schema(type = "string", format = "HH:mm", example = "17:15")
     private LocalTime hora;
 
     @Enumerated(EnumType.STRING)
