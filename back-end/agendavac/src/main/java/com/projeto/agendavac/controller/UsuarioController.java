@@ -30,6 +30,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "201", description = "Usuário cadastrado com sucesso"),
             @ApiResponse(responseCode = "400", description = "Dados inválidos fornecidos para o cadastro")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Usuario> salvar(@Valid @RequestBody Usuario usuario) {
 
         Usuario usuarioNovo = usuarioService.salvar(usuario);
@@ -43,6 +44,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "200", description = "Usuários listados com sucesso"),
             @ApiResponse(responseCode = "204", description = "Nenhum usuário encontrado")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> listarTodos() {
 
         try {
@@ -62,6 +64,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "200", description = "Usuário encontrado com sucesso"),
             @ApiResponse(responseCode = "404", description = "Usuário com o ID fornecido não encontrado")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
 
         try {
@@ -80,6 +83,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "200", description = "Usuários encontrados com sucesso"),
             @ApiResponse(responseCode = "404", description = "Nenhum usuário encontrado com o nome fornecido")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> buscarPorNome(@PathVariable String nome) {
 
         try {
@@ -99,6 +103,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "404", description = "Usuário com o ID fornecido não encontrado"),
             @ApiResponse(responseCode = "400", description = "Dados inválidos fornecidos para atualização")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> atualizar(@PathVariable Long id, @Valid @RequestBody Usuario usuarioAtualizado) {
 
         try {
@@ -117,6 +122,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "200", description = "Usuário deletado com sucesso"),
             @ApiResponse(responseCode = "404", description = "Usuário com o ID fornecido não encontrado")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> deletar(@PathVariable Long id) {
 
         try {

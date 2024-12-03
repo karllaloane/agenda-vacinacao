@@ -29,6 +29,7 @@ public class AlergiaController {
             @ApiResponse(responseCode = "409", description = "Alergia com o mesmo nome já cadastrada"),
             @ApiResponse(responseCode = "500", description = "O nome da alergia não pode estar vazio ou Alergia deve ter no máximo 40 caracteres.")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> criar(@RequestBody Alergia alergia) {
         try {
             Alergia novaAlergia = alergiaService.salvar(alergia);
@@ -45,6 +46,7 @@ public class AlergiaController {
             @ApiResponse(responseCode = "200", description = "Lista de alergias retornada com sucesso"),
             @ApiResponse(responseCode = "204", description = "Nenhuma alergia cadastrada")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> listarTodas() {
 
         List<Alergia> alergias = alergiaService.listarTodas();
@@ -62,6 +64,7 @@ public class AlergiaController {
             @ApiResponse(responseCode = "200", description = "Alergia encontrada com sucesso"),
             @ApiResponse(responseCode = "404", description = "Alergia com o ID informado não encontrada")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
 
         try {
@@ -79,6 +82,7 @@ public class AlergiaController {
             @ApiResponse(responseCode = "200", description = "Alergia encontrada com sucesso"),
             @ApiResponse(responseCode = "404", description = "Alergia com o nome informado não encontrada")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> buscarPorNome(@PathVariable String nome) {
         try {
             Alergia alergia = alergiaService.buscarPorNome(nome);
@@ -96,6 +100,7 @@ public class AlergiaController {
             @ApiResponse(responseCode = "404", description = "Alergia com o ID informado não encontrada"),
             @ApiResponse(responseCode = "409", description = "Alergia com o mesmo nome já cadastrada")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody Alergia alergiaAtualizada) {
 
         try {
@@ -117,6 +122,7 @@ public class AlergiaController {
             @ApiResponse(responseCode = "404", description = "Alergia com o ID informado não encontrada"),
             @ApiResponse(responseCode = "409", description = "Alergia não pode ser deletada devido a registros associados")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> deletar(@PathVariable Long id) {
 
         try {

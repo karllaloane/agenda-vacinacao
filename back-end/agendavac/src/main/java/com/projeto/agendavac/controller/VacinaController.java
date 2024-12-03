@@ -30,6 +30,7 @@ public class VacinaController {
             @ApiResponse(responseCode = "409", description = "Vacina com o mesmo título já existe"),
             @ApiResponse(responseCode = "500", description = "Campo obrigatório vazio ou quantidade de caracteres superior ao permitido.")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> criar(@Valid @RequestBody Vacina vacina) {
 
         try {
@@ -48,6 +49,7 @@ public class VacinaController {
             @ApiResponse(responseCode = "200", description = "Lista de vacinas retornada com sucesso"),
             @ApiResponse(responseCode = "204", description = "Nenhuma vacina cadastrada")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> listarTodas() {
         List<Vacina> vacinas = vacinaService.listarTodas();
 
@@ -64,6 +66,7 @@ public class VacinaController {
             @ApiResponse(responseCode = "200", description = "Vacina encontrada com sucesso"),
             @ApiResponse(responseCode = "404", description = "Vacina com o ID informado não encontrada")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
         try {
             Vacina vacina = vacinaService.buscarPorId(id);
@@ -82,6 +85,7 @@ public class VacinaController {
             @ApiResponse(responseCode = "404", description = "Vacina com o ID informado não encontrada"),
             @ApiResponse(responseCode = "500", description = "Campo obrigatório vazio ou quantidade de caracteres superior ao permitido.")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> atualizar(@PathVariable Long id, @Valid @RequestBody Vacina vacinaAtualizada) {
 
         try {
@@ -101,6 +105,7 @@ public class VacinaController {
             @ApiResponse(responseCode = "404", description = "Vacina com o ID informado não encontrada"),
             @ApiResponse(responseCode = "409", description = "Vacina não pode ser deletada devido a registros associados")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> deletar(@PathVariable Long id) {
 
         try {

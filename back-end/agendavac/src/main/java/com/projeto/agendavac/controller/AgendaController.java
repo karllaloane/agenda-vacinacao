@@ -32,6 +32,7 @@ public class AgendaController {
             @ApiResponse(responseCode = "404", description = "Usuário ou vacina não encontrada."),
             @ApiResponse(responseCode = "400", description = "Dados inválidos fornecidos para a agenda.")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<List<Agenda>> agendar(
             @RequestParam Long usuarioId,
             @RequestParam Long vacinaId,
@@ -52,6 +53,7 @@ public class AgendaController {
             @ApiResponse(responseCode = "400", description = "Situação inválida fornecida."),
             @ApiResponse(responseCode = "422", description = "Usuário possui alergia a componentes da vacina.")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Agenda> darBaixa(@PathVariable Long agendaId, @RequestParam Situacao situacao) {
 
         Agenda agendaAtualizada = agendaService.darBaixa(agendaId, situacao);
@@ -65,6 +67,7 @@ public class AgendaController {
             @ApiResponse(responseCode = "200", description = "Agendas retornadas com sucesso."),
             @ApiResponse(responseCode = "404", description = "Usuário ou agendas não encontradas.")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<List<Agenda>> listarPorUsuario(@PathVariable Long usuarioId) {
 
         List<Agenda> agendas = agendaService.listarPorUsuario(usuarioId);
@@ -78,6 +81,7 @@ public class AgendaController {
             @ApiResponse(responseCode = "200", description = "Agendas retornadas com sucesso"),
             @ApiResponse(responseCode = "404", description = "Nenhuma agenda encontrada")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> buscarTodas() {
 
         try {
@@ -96,6 +100,7 @@ public class AgendaController {
             @ApiResponse(responseCode = "200", description = "Agendas filtradas retornadas com sucesso"),
             @ApiResponse(responseCode = "404", description = "Nenhuma agenda encontrada com a situação especificada")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> buscarPorSituacao(@PathVariable Situacao situacao) {
 
         try {
@@ -115,6 +120,7 @@ public class AgendaController {
             @ApiResponse(responseCode = "200", description = "Agenda excluída com sucesso."),
             @ApiResponse(responseCode = "404", description = "Agenda com o ID fornecido não encontrada.")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<String> excluirAgenda(@PathVariable Long agendaId) {
         try {
             agendaService.excluir(agendaId);

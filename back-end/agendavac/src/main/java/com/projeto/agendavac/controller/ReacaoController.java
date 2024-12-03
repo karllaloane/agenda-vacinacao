@@ -30,6 +30,7 @@ public class ReacaoController {
             @ApiResponse(responseCode = "404", description = "Usuário ou agenda não encontrados."),
             @ApiResponse(responseCode = "400", description = "Não é possível inserir reação em uma agenda não realizada.")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Reacao> incluirReacao(
             @RequestParam Long agendaId,
             @RequestParam String descricao,
@@ -46,6 +47,7 @@ public class ReacaoController {
             @ApiResponse(responseCode = "200", description = "Reações listadas com sucesso."),
             @ApiResponse(responseCode = "404", description = "Nenhuma reação encontrada.")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<List<Reacao>> listarTodas() {
 
         List<Reacao> reacoes = reacaoService.listarTodas();
@@ -59,6 +61,7 @@ public class ReacaoController {
             @ApiResponse(responseCode = "200", description = "Reações listadas com sucesso."),
             @ApiResponse(responseCode = "404", description = "Nenhuma reação encontrada para a agenda.")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<List<Reacao>> buscarPorAgenda(@PathVariable Long agendaId) {
 
         List<Reacao> reacoes = reacaoService.buscarPorAgenda(agendaId);
@@ -72,6 +75,7 @@ public class ReacaoController {
             @ApiResponse(responseCode = "200", description = "Reações encontradas com sucesso."),
             @ApiResponse(responseCode = "404", description = "Usuário ou reações não encontradas.")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<List<Reacao>> buscarPorUsuario(@PathVariable Long usuarioId) {
 
         List<Reacao> reacoes = reacaoService.buscarPorUsuario(usuarioId);
@@ -86,6 +90,7 @@ public class ReacaoController {
             @ApiResponse(responseCode = "200", description = "Reação excluída com sucesso."),
             @ApiResponse(responseCode = "404", description = "Reação não encontrada.")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<String> excluirReacao(@PathVariable Long id) {
 
         try {

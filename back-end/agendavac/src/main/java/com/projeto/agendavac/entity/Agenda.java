@@ -6,6 +6,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -39,5 +40,8 @@ public class Agenda {
     @ManyToOne(optional = false)
     @JoinColumn(name = "vacina_id")
     private Vacina vacina;
+
+    @OneToMany(mappedBy = "agenda", cascade = CascadeType.ALL)
+    private List<Reacao> reacoes;
 }
 

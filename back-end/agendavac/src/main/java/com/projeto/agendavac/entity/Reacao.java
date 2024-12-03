@@ -1,5 +1,6 @@
 package com.projeto.agendavac.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -26,6 +27,7 @@ public class Reacao {
     @NotNull(message = "A data da reação é obrigatória.")
     private LocalDate dataReacao;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "agenda_id", nullable = false)
     private Agenda agenda;

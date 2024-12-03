@@ -30,6 +30,7 @@ public class ComponenteController {
             @ApiResponse(responseCode = "409", description = "Componente com o mesmo nome já existe / Integridade de dados"),
             @ApiResponse(responseCode = "500", description = "O nome da alergia não pode estar vazio ou Alergia deve ter no máximo 40 caracteres.")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> criar(@Valid @RequestBody Componente componente) {
 
         try {
@@ -48,6 +49,7 @@ public class ComponenteController {
             @ApiResponse(responseCode = "200", description = "Lista de componentes retornada com sucesso"),
             @ApiResponse(responseCode = "204", description = "Nenhum componente cadastrado")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> listarTodos() {
 
         List<Componente> componentes = componenteService.listarTodos();
@@ -65,6 +67,7 @@ public class ComponenteController {
             @ApiResponse(responseCode = "200", description = "Componente encontrado com sucesso"),
             @ApiResponse(responseCode = "404", description = "Componente com o ID informado não encontrado")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
 
         try {
@@ -83,6 +86,7 @@ public class ComponenteController {
             @ApiResponse(responseCode = "200", description = "Componente atualizado com sucesso"),
             @ApiResponse(responseCode = "404", description = "Componente com o ID informado não encontrado")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> atualizar(@PathVariable Long id, @Valid @RequestBody Componente componenteAtualizado) {
         try {
             Componente componente = componenteService.atualizar(id, componenteAtualizado);
@@ -99,6 +103,7 @@ public class ComponenteController {
             @ApiResponse(responseCode = "404", description = "Componente com o ID informado não encontrado"),
             @ApiResponse(responseCode = "409", description = "Componente não pode ser deletado devido a registros associados")
     })
+    @CrossOrigin(origins = "*")
     public ResponseEntity<?> deletar(@PathVariable Long id) {
         try {
             componenteService.deletar(id);
