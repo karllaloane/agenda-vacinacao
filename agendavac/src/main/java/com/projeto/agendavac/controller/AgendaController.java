@@ -120,6 +120,23 @@ public class AgendaController {
         }
     }
 
+    @GetMapping("/{id}")
+    @Operation(summary = "Buscar agenda por ID", description = "Retorna os detalhes de uma agenda específica pelo ID informado.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Agenda encontrada com sucesso."),
+            @ApiResponse(responseCode = "404", description = "Agenda com o ID fornecido não encontrada.")
+    })
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<Agenda> buscarPorId(@PathVariable Long id) {
+        try {
+            Agenda agenda = agendaService.buscarPorId(id);
+            return ResponseEntity.ok(agenda);
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+
     @DeleteMapping("/{agendaId}")
     @Operation(summary = "Excluir agenda", description = "Exclui uma agenda pelo ID informado.")
     @ApiResponses(value = {

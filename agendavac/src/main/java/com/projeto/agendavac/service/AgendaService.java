@@ -114,6 +114,12 @@ public class AgendaService {
         return agendas;
     }
 
+    public Agenda buscarPorId(Long id) {
+        return agendaRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Agenda com ID " + id + " não encontrada."));
+    }
+
+
     public void excluir(Long agendaId) {
         if (!agendaRepository.existsById(agendaId)) {
             throw new NoSuchElementException("Agenda com ID " + agendaId + " não encontrada.");
